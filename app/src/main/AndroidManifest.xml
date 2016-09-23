@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CallBackTest.MainCallBack"/>
+        <activity android:name=".RecyclerViewTest.HomeActivity"/>
         <service android:name=".UpdateService" />
         <service android:name=".Md5ProduceService"/>
         <service android:name=".MyService"/>

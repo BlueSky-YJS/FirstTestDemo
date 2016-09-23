@@ -30,6 +30,7 @@ import com.example.yjsong.yjsandroidtest.MyService.MyBuild;
 import java.lang.ref.WeakReference;
 
 import com.example.yjsong.yjsandroidtest.CallBackTest.MainCallBack;
+import com.example.yjsong.yjsandroidtest.RecyclerViewTest.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Button btn;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private MyService myService;  //我们自己的service
     private SeekBar pBar;  //模拟service更新进度条
     private ConnectionService connectionService;
-    private Button btn4;
+    private Button btn4,btn5;
 
     //apk下载链接
     private static final String APK_DOWNLOAD_URL = "http://app.xiaomi.com/download/421138?ref=search";
@@ -73,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent mIntent = new Intent(MainActivity.this, MainCallBack.class);
                 startActivity(mIntent);
+            }
+        });
+        btn5 = (Button) findViewById(R.id.button5);
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                //intent.setClass(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
         pBar = (SeekBar) findViewById(R.id.seekbar);
