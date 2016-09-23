@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lingtufolder">
+        <item>configfile</item>
+        <item>db</item>
+        <item>plugin</item>
+        <item>startup</item>
+        <item>userdata</item>
+    </string-array>
+    
+    <string-array name="configPath">
+        <item>temp</item>
+    </string-array>
+    
+    <string-array name="configfolder">
+        <item>ag_config.txt</item>
+        <item>cnpackage.dat</item>
+        <item>dmpackage.dat</item>
+        <item>etocword.dat</item>
+        <item>exchword.dat</item>
+        <item>gps_config.txt</item>
+        <item>imagewordlib.bin</item>
+        <item>jhwrdic.dat</item>
+        <item>keytype.dat</item>
+        <item>md_config.txt</item>
+        <item>network_config.txt</item>
+        <item>placewordlib.bin</item>
+        <item>poitype.txt</item>
+        <item>product.sn</item>
+        <item>profile.ltz</item>
+        <item>rc_config.txt</item>
+        <item>rg_config.txt</item>
+        <item>round.xml</item>
+        <item>sc_config.txt</item>
+    </string-array>
+    
+    <string-array name="dbfolder">
+        <item>maps</item>
+        <item>plugin</item>
+    </string-array> 
+    
+    <string-array name="mapspath">
+        <item>door</item>
+        <item>gcdata</item>
+        <item>localbin</item>
+        <item>pak</item>
+        <item>rg</item>
+        <item>vpblock</item>
+    </string-array>
+    
+    <string-array name="mapsfilefolder">
+        <item>dataversion.txt</item>
+    </string-array> 
+    
+    <string-array name="dbpluginfolder">
+        <item>tour</item>
+    </string-array>
+    
+    <string-array name="tourfolder">
+        <item>districtFirstIndex.txt</item>
+        <item>districtIndex.txt</item>
+        <item>mapindex.txt</item>
+        <item>outdistrictdata.sn</item>
+        <item>outdistrictdata.txt</item>
+        <item>outmapdata.sn</item>
+        <item>outmapdata.txt</item>
+        <item>smalloutdistrictdata.sn</item>
+        <item>smalloutdistrictdata.txt</item>
+        <item>smalloutmapdata.sn</item>
+        <item>smalloutmapdata.txt</item>
+        <item>tourpic.dat</item>
+        <item>tourpic.inx</item>
+    </string-array>
+    
+    <string-array name="doorfolder">
+        <item>adata.lt</item>
+        <item>ddata0.lt</item>
+        <item>ddata1.lt</item>
+        <item>ddata2.lt</item>
+        <item>ddata3.lt</item>
+        <item>idxdata0.lt</item>
+        <item>idxdata1.lt</item>
+        <item>idxdata2.lt</item>
+        <item>idxdata3.lt</item>
+        <item>pydata.lt</item>
+    </string-array>
+    
+    <string-array name="gcdatafolder">
+        <item>entrypoint.dat</item>
+        <item>gcpack.dat</item>
+    </string-array>
+    
+    <string-array name="localbinfolder">
+        <item>0.mtd</item>
+        <item>ltrc.idx</item>
+        <item>ltrc.off</item>
+        <item>ltrc.rc1</item>
+        <item>ltrc.rc2</item>
+        <item>ltrc.rc3</item>
+        <item>ltrc.rp1</item>
+        <item>ltrc.rp2</item>
+        <item>ltrc.rp3</item>
+    </string-array>
+    
+    <string-array name="pakfolder">
+        <item>md_font.txt</item>
+        <item>md_style_bmd.txt</item>
+        <item>md_style_day.txt</item>
+        <item>md_style_night.txt</item>
+        <item>pack_bmp_bmd</item>
+        <item>pack_bmp_day</item>
+        <item>pack_bmp_night</item>
+        <item>song_12x12.fnt</item>
+        <item>vectordataout.pak</item>
+    </string-array>
+    
+    <string-array name="rgfolder">
+        <item>ltrg.bkt</item>
+        <item>ltrg.off</item>
+        <item>rgdata.mtd</item>
+        <item>rgpack320234.dat</item>
+    </string-array>
+    
+    <string-array name="vpblockfolder">
+        <item>ltvp.dat</item>
+        <item>speedbyrank.ini</item>
+    </string-array>
+    
+    <string-array name="startupfolder">
+        <item>smg_sysconfig.txt</item>
+    </string-array> 
+    
+    <string-array name="pluginfolder">
+        <item>bmdimage</item>
+        <item>rtm</item>
+        <item>satellite</item>
+        <item>toursearch</item>
+        <item>travelinfo</item>
+        <item>watchmen</item>
+        <item>weather</item>         
+    </string-array>
+    
+    <string-array name="userdatafolder">
+        <item>4sshop</item>
+        <item>eventpoi</item>
+        <item>historykeyword</item>
+        <item>itsroaddata</item>
+        <item>log</item>
+        <item>mypoi</item>
+        <item>nmea</item>
+        <item>poi</item>
+        <item>record</item>
+        <item>route</item>
+        <item>share</item>
+        <item>sms</item>
+        <item>track</item>
+        <item>districttable</item>
+    </string-array>
+    
+     <string-array name="fourshopfolder">
+        <item>InfoData.ini</item>
+        <item>InfoIndex.ini</item>
+    </string-array>
+    
+     <string-array name="hiskeyconfigfolder">
+        <item>hiskeyconfig.txt</item>
+    </string-array>
+    
+     <string-array name="districtfolder">
+        <item>districttable.txt</item>
+    </string-array>
+</resources>
