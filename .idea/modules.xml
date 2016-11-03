@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/YJSandroidTest.iml" filepath="$PROJECT_DIR$/YJSandroidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FirstTestDemo.iml" filepath="$PROJECT_DIR$/FirstTestDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crazydemo4.4/crazydemo4.4.iml" filepath="$PROJECT_DIR$/crazydemo4.4/crazydemo4.4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myfunctiontest/myfunctiontest.iml" filepath="$PROJECT_DIR$/myfunctiontest/myfunctiontest.iml" />
     </modules>
   </component>
 </project>
