@@ -1,7 +1,11 @@
 package com.example.myfunctiontest;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,20 +15,55 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.myfunctiontest.UpdateProgressTest.ProgressInterface;
+import com.example.myfunctiontest.UpdateProgressTest.UpdateService;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+
 
 public class MainActivity extends AppCompatActivity implements NetWorkCallbackInterface{
     Button start;
     TextView tv;
     ExecutorService pool;
+    private ProgressBar updateBar;
+    private Button btnDown,btnPause;
+    public static final String APK_DOWNLOAD_URL = "http://101.200.195.22:8080/appupdate/weichai.apk";
+    private UpdateService myservice;
+    ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myservice=((UpdateService.myBinder)service).getservice();
+            myservice.setProgressinterface(new ProgressInterface() {
+                @Override
+                public void updateProgress(int progress) {
+                    Message msg = Message.obtain();
+                    msg.what = 1;
+                    msg.arg1 = progress;
+                    updateHandler.sendMessage(msg);
+                }
+            });
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        updateBar = (ProgressBar) findViewById(R.id.progressBar2);
+        btnDown = (Button) findViewById(R.id.button);
+        btnPause = (Button) findViewById(R.id.button2);
+        btnDown.setOnClickListener(new MyClickListener());
+        btnPause.setOnClickListener(new MyPauseClick());
         pool= Executors.newSingleThreadExecutor();
         init();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,5 +135,43 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
             }
         });
         tv=(TextView) findViewById(R.id.display_result);
+    }
+        Handler updateHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.what == 1){
+                    if(msg.arg1==UpdateService.pauseValue){
+                        tv.setText("暂停");
+                    }
+                    updateBar.setProgress(msg.arg1);
+                    tv.setText(msg.arg1+"--");
+                }
+            }
+        };
+
+        public class MyClickListener implements View.OnClickListener{
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, UpdateService.class);
+                //下载地址
+                it.putExtra("apkUrl", APK_DOWNLOAD_URL);
+                bindService(it,conn, BIND_AUTO_CREATE);
+                //startService(it);
+            }
+        }
+
+    public class MyPauseClick implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            unbindService(conn);
+
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        unbindService(conn);
+        super.onStop();
     }
 }

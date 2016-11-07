@@ -23,4 +23,28 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:textColor="#000"/>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2" />
+
+    <Button
+        android:text="暂停"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_below="@+id/display_result"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="111dp" />
+
+    <Button
+        android:text="下载"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_below="@+id/display_result"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="46dp" />
 </RelativeLayout>
