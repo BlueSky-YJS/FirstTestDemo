@@ -171,12 +171,21 @@ public class UpdateDownloadRequest implements Runnable{
             onFailure(failureCode);
         }
 
+        protected void handlerPauseMessage(){
+            onPause();
+        }
+
         public void onFinish() {
             downloadListener.onFinished(mCompleteSize, "");
         }
 
         public void onFailure(FailureCode failureCode) {
             downloadListener.onFailure();
+        }
+
+        //处理暂停逻辑
+        public void onPause(){
+            downloadListener.onPausse();
         }
 
         /**

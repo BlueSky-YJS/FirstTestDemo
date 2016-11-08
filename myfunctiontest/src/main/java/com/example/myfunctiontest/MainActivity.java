@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -144,8 +145,10 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
                     if(msg.arg1==UpdateService.pauseValue){
                         tv.setText("暂停");
                     }
-                    updateBar.setProgress(msg.arg1);
-                    tv.setText(msg.arg1+"--");
+                    if (myservice!=null){
+                        updateBar.setProgress(msg.arg1);
+                        tv.setText(msg.arg1+"--");
+                    }
                 }
             }
         };
@@ -164,14 +167,22 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
     public class MyPauseClick implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            unbindService(conn);
+            myservice = null;
+            try{
+                unbindService(conn);
+            }catch (Exception e){}
 
         }
     }
 
+
     @Override
-    protected void onStop() {
-        unbindService(conn);
-        super.onStop();
+    protected void onDestroy() {
+        try {
+            unbindService(conn);
+        }catch (Exception e){
+
+        }
+        super.onDestroy();
     }
 }

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        btn4 = (Button) findViewById(R.id.button4);
+        btn4 = (Button) findViewById(R.id.button4);//点击跳转
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
-        btn5 = (Button) findViewById(R.id.button5);
+        btn5 = (Button) findViewById(R.id.button5);//Button
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         text =(TextView) findViewById(R.id.text);
         produceMd5 = (Button) findViewById(R.id.button);
         produceMd5.setOnClickListener(new myOnclickListener());
-        btn = (Button) findViewById(R.id.btn);
+        btn = (Button) findViewById(R.id.btn);//YJSandroidTest
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-   public void startService(View view) { //绑定service
+   public void startService(View view) { //绑定service//启动service
         bindService(new Intent(this,MyService.class),connectionService, Context.BIND_AUTO_CREATE);
     }
     /**

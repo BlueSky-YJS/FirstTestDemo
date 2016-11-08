@@ -98,9 +98,4 @@ public class UpdateService extends Service{
         onPause();
         return super.onUnbind(intent);
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 }
