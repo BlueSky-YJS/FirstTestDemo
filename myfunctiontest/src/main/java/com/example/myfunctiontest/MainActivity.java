@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.myfunctiontest.CommunicationTest.ClientActivity;
 import com.example.myfunctiontest.UpdateProgressTest.ProgressInterface;
 import com.example.myfunctiontest.UpdateProgressTest.UpdateService;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
     ExecutorService pool;
     private ProgressBar updateBar;
     private Button btnDown,btnPause;
+    private Button testServer;
     public static final String APK_DOWNLOAD_URL = "http://101.200.195.22:8080/appupdate/weichai.apk";
     private UpdateService myservice;
     ServiceConnection conn = new ServiceConnection() {
@@ -65,6 +67,14 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
         btnPause = (Button) findViewById(R.id.button2);
         btnDown.setOnClickListener(new MyClickListener());
         btnPause.setOnClickListener(new MyPauseClick());
+        testServer = (Button) findViewById(R.id.testService);
+        testServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent serIntent = new Intent(MainActivity.this, ClientActivity.class);
+                startActivity(serIntent);
+            }
+        });
         pool= Executors.newSingleThreadExecutor();
         init();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

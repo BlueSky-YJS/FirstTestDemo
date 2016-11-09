@@ -47,4 +47,11 @@
         android:layout_below="@+id/display_result"
         android:layout_alignParentStart="true"
         android:layout_marginTop="46dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testService"
+        android:text="点击跳转到messager测试"
+        />
 </RelativeLayout>

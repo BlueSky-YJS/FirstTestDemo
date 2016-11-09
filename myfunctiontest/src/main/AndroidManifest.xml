@@ -16,7 +16,13 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
+        <activity android:name=".CommunicationTest.ClientActivity"/>
         <service android:name=".UpdateProgressTest.UpdateService"/>
+        <service android:name=".CommunicationTest.ServiceServer">
+            <intent-filter>
+                <action android:name="com.example.myfunctiontest.server" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
