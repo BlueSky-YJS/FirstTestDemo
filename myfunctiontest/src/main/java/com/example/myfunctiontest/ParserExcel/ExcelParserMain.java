@@ -32,6 +32,7 @@ public class ExcelParserMain extends AppCompatActivity {
     //private Map<String, List<_4sInfo>> map4s;
     private List<Map<String, List<_4sInfo>>> map4scity;
     private Map<String, List<Map<String, List<_4sInfo>>>> map4sprovince;
+    private Map<String,_4sProvince> map_4sProvinces;
     private Button parseStartBtn;
     private Map<String,String> pMap;
     private Map<String,String> cMap;
@@ -57,7 +58,8 @@ public class ExcelParserMain extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        readExcel(filename);
+                        //readExcel(filename);
+                        readnewExcel(filename);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -204,6 +206,76 @@ public class ExcelParserMain extends AppCompatActivity {
 
     }
     //excel结束
+
+
+    //新解析4sinfo.xls  excel表  开始
+    public void readnewExcel(String FileName) throws Exception {//weichai4S.xls
+        //获取AssetManager对象
+        // AssetManager assetManager = this.getAssets();
+        //打开Excel文件，返回输入流对象
+        // InputStream inputStream = assetManager.open(FileName);
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(FileName);
+        Workbook workbook = null;
+        workbook = Workbook.getWorkbook(inputStream);
+        //得到第一张表
+        Sheet sheet = workbook.getSheet(0);
+        //列数
+        int columnCount = sheet.getColumns();
+        //行数
+        int rowCount = sheet.getRows();
+        //单元格
+        Cell cell = null;
+        Cell cellp = null;
+        List<String> list = new ArrayList<String>();
+        map_4sProvinces = new HashMap<>();
+        for (int everyRow = 0;everyRow < rowCount;everyRow++){
+            String pName = sheet.getCell(0,everyRow).getContents();
+            String cName = sheet.getCell(1,everyRow).getContents();
+            _4sProvince newProvince = new _4sProvince();
+            if (!pMap.containsKey(pName)){//不存在该省
+                pMap.put(pName,pName);
+                cMap.put(cName,cName);
+                List<_4sCity> _4scitylist = new ArrayList<>();
+                _4sCity m_4sCity = new _4sCity();
+                List<_4sInfo> _4sinfolist = new ArrayList<>();
+                _4sInfo m_4sInfo = new _4sInfo();
+                newProvince.setPname(pName);
+                m_4sCity.setCityname(cName);
+                m_4sInfo.set_4sname(sheet.getCell(3,everyRow).getContents());
+                m_4sInfo.set_4saddress(sheet.getCell(4,everyRow).getContents());
+                m_4sInfo.set_4slatitude(sheet.getCell(13,everyRow).getContents());
+                m_4sInfo.set_4slongitude(sheet.getCell(12,everyRow).getContents());
+                _4sinfolist.add(m_4sInfo);
+                m_4sCity.set_4sinfolist(_4sinfolist);
+                newProvince.set_4scitylist(_4scitylist);
+            }else if (cMap.containsKey(cName)){//存在该省,不存在该市
+                cMap.put(cName,cName);
+                _4sProvince m_province = map_4sProvinces.get(pName);
+                List<_4sCity> _4scitylist = map_4sProvinces.get(pName).get_4scitylist();
+                _4sCity m_4sCity = new _4sCity();
+                List<_4sInfo> _4sinfolist = new ArrayList<>();
+                _4sInfo m_4sInfo = new _4sInfo();
+                m_4sCity.setCityname(cName);
+                m_4sInfo.set_4sname(sheet.getCell(3,everyRow).getContents());
+                m_4sInfo.set_4saddress(sheet.getCell(4,everyRow).getContents());
+                m_4sInfo.set_4slatitude(sheet.getCell(13,everyRow).getContents());
+                m_4sInfo.set_4slongitude(sheet.getCell(12,everyRow).getContents());
+                _4sinfolist.add(m_4sInfo);
+                m_4sCity.set_4sinfolist(_4sinfolist);
+                m_province.set_4scitylist(_4scitylist);
+                newProvince = m_province;
+            }else{//存在该省,存在该市
+
+            }
+            //将数据添加到集合
+            //TODO add provinces
+            map_4sProvinces.put(pName,newProvince);
+        }
+
+    }
+
+
+    //新解析4sinfo.xls  excel表  结束
 
 
 }

@@ -66,4 +66,13 @@
         android:layout_below="@+id/start"
         android:layout_alignStart="@+id/parseExcel"
         android:layout_marginStart="57dp" />
+
+    <Button
+        android:text="点击多线程下载"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/parseExcel"
+        android:layout_alignStart="@+id/testService"
+        android:layout_marginTop="38dp"
+        android:id="@+id/mutlidown" />
 </RelativeLayout>
