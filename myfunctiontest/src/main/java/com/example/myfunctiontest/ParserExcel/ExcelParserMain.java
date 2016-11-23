@@ -14,8 +14,10 @@ import com.example.myfunctiontest.R;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import jxl.Cell;
 import jxl.Sheet;
@@ -67,145 +69,6 @@ public class ExcelParserMain extends AppCompatActivity {
             }).start();
         }
     }
-    //excel开始
-    public void readExcel(String FileName) throws Exception{//weichai4S.xls
-        //获取AssetManager对象
-        Map<String, List<String>> citymap = new HashMap<String, List<String>>();
-       // AssetManager assetManager = this.getAssets();
-        //打开Excel文件，返回输入流对象
-       // InputStream inputStream = assetManager.open(FileName);
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(FileName);
-        Workbook workbook = null;
-        workbook = Workbook.getWorkbook(inputStream);
-        //得到第一张表
-        Sheet sheet = workbook.getSheet(0);
-        //列数
-        int columnCount = sheet.getColumns();
-        //行数
-        int rowCount = sheet.getRows();
-        //单元格
-        Cell cell = null;
-        Cell cellp = null;
-        List<String> list = new ArrayList<String>();
-        int p=0;
-        for (int everyRow = 0;everyRow < rowCount;everyRow++) {
-            /*for(int everyColumn = 0;everyColumn < columnCount;everyColumn++){*/
-              //  cell = sheet.getCell(0, everyRow);
-               // cellp = sheet.getCell(1, everyRow);
-                String pName = sheet.getCell(0,everyRow).getContents();
-                if(!pMap.containsKey(pName)){//不存在该省
-                    pMap.put(pName,"true");
-                    Map<String, List<_4sInfo>> map4s = new HashMap<String, List<_4sInfo>>();
-                    String cName = sheet.getCell(1,everyRow).getContents();
-                    if(!cMap.containsKey(cName)){//不存在该市
-                        cMap.put(cName,"true");
-                        List<_4sInfo> _4slist = new ArrayList<>();
-                        _4sInfo _4s = new _4sInfo();
-                        _4s.set_4sname(sheet.getCell(3,everyRow).getContents());
-                        _4s.set_4saddress(sheet.getCell(4,everyRow).getContents());
-                        _4s.set_4slongitude(sheet.getCell(12,everyRow).getContents());
-                        _4s.set_4slatitude(sheet.getCell(13,everyRow).getContents());
-                        Log.i("string-new-4s", _4s.get_4sname()+_4s.get_4saddress());
-                        _4slist.add(_4s);
-                        map4s.put(cName,_4slist);
-                    }
-                    List<Map<String,List<_4sInfo>>> p_4slist = new ArrayList<>();
-                    p_4slist.add(map4s);
-                    map4sprovince.put(pName,p_4slist);
-                    int  b = p_4slist.size();
-                   // String c = p_4slist.get(0).get("宿州市").get(0).get_4sname();
-                 //   Log.i("test-----",c+"");
-
-                }else {//存在该省份
-                    String cName = sheet.getCell(1,everyRow).getContents();
-
-                    if(!cMap.containsKey(cName)){//不存在该市
-                        cMap.put(cName,"true");
-                        Map<String, List<_4sInfo>> map4s = new HashMap<String, List<_4sInfo>>();
-                        List<_4sInfo> _4slist = new ArrayList<>();
-                        _4sInfo _4s = new _4sInfo();
-                        _4s.set_4sname(sheet.getCell(3,everyRow).getContents());
-                        _4s.set_4saddress(sheet.getCell(4,everyRow).getContents());
-                        _4s.set_4slongitude(sheet.getCell(12,everyRow).getContents());
-                        _4s.set_4slatitude(sheet.getCell(13,everyRow).getContents());
-                        _4slist.add(_4s);
-                        map4s.put(cName,_4slist);
-                        List<Map<String,List<_4sInfo>>> p_4slist = new ArrayList<>();
-                        p_4slist =  map4sprovince.get(pName);
-                        p_4slist.add(map4s);
-                        map4sprovince.remove(pName);
-                        map4sprovince.put(pName,p_4slist);
-                    }else {//存在该城市
-                        List<Map<String,List<_4sInfo>>> mList = new ArrayList<>();
-                        Map<String, List<_4sInfo>> c_map4s = new HashMap<>();
-                        mList = map4sprovince.get(pName);
-                        int a=mList.get(0).size();
-                        Log.i("test--citys",mList.size()+"--"+a);
-                        c_map4s.clear();
-                        for (int i=0;i<mList.size();i++){
-                           // Log.i("test--citys",mList.get(i).get(cName).get(i).get_4sname());
-                           // Log.i("test--citys",mList.get(i).get(cName).get(i).get_4saddress());
-                            if (mList.get(i).containsKey(cName)){
-                                c_map4s = mList.get(i);
-                                break;
-                            }
-                        }
-                        _4sInfo c_4s = new _4sInfo();
-                        c_4s.set_4sname(sheet.getCell(3,everyRow).getContents());
-                        c_4s.set_4saddress(sheet.getCell(4,everyRow).getContents());
-                        c_4s.set_4slongitude(sheet.getCell(12,everyRow).getContents());
-                        c_4s.set_4slatitude(sheet.getCell(13,everyRow).getContents());
-                        List<_4sInfo> c_list = c_map4s.get(cName);
-                        Log.i("string-cunzai-4s", c_4s.get_4sname()+c_4s.get_4saddress());
-                        c_list.add(c_4s);
-                        c_map4s.clear();
-                        c_map4s.put(cName,c_list);
-                        int m = c_map4s.size();
-                        List<Map<String,List<_4sInfo>>> pr_4slist = new ArrayList<>();
-                        pr_4slist = map4sprovince.get(pName);
-                        for (int j=0;j<pr_4slist.size();j++){
-                            if(pr_4slist.get(j).containsKey(cName)){
-                                pr_4slist.get(j).remove(cName);
-                                break;
-                            }
-                        }
-                        List<Map<String,List<_4sInfo>>> new_4slist = new ArrayList<>();
-                        int v = c_map4s.size();
-                        new_4slist.add(c_map4s);
-                        int x = c_map4s.size();
-                        map4sprovince.put(pName,new_4slist);
-                    }
-                }
-              //  String contents =  cell.getContents();
-              //  Log.i("string--", cell.getContents());
-           /* }*/
-        }
-        Log.i("success--", "chuanjianwancheng"+map4sprovince);
-			    /*for (int everyRow = 0;everyRow < rowCount;everyRow++) {
-			    	cell = sheet.getCell(0, everyRow);
-			    	String pname = sheet.getCell(0, p).getContents();
-			    	String pname2 = sheet.getCell(0, everyRow).getContents();
-			    	String cname = sheet.getCell(1, p).getContents();
-			    	String cname2 = sheet.getCell(1, everyRow).getContents();
-			    	if(pname.equalsIgnoreCase(pname2)){
-
-				    		cellp = sheet.getCell(1, everyRow);
-				    		if(!cname.equalsIgnoreCase(cname2)){
-				    			list.add(cname);
-				    		}
-				    		String ceshi = cname;
-			    			Log.i("ceshi---",cname );
-
-			    	}
-			    	if(!pname.equalsIgnoreCase(pname2)&&!cname.equalsIgnoreCase(cname2)){
-			    		p = everyRow;
-			    	}
-
-			    	citymap.put(pname, list);
-			    }*/
-
-    }
-    //excel结束
 
 
     //新解析4sinfo.xls  excel表  开始
@@ -247,8 +110,9 @@ public class ExcelParserMain extends AppCompatActivity {
                 m_4sInfo.set_4slongitude(sheet.getCell(12,everyRow).getContents());
                 _4sinfolist.add(m_4sInfo);
                 m_4sCity.set_4sinfolist(_4sinfolist);
+                _4scitylist.add(m_4sCity);
                 newProvince.set_4scitylist(_4scitylist);
-            }else if (cMap.containsKey(cName)){//存在该省,不存在该市
+            }else if (!cMap.containsKey(cName)){//存在该省,不存在该市
                 cMap.put(cName,cName);
                 _4sProvince m_province = map_4sProvinces.get(pName);
                 List<_4sCity> _4scitylist = map_4sProvinces.get(pName).get_4scitylist();
@@ -262,16 +126,50 @@ public class ExcelParserMain extends AppCompatActivity {
                 m_4sInfo.set_4slongitude(sheet.getCell(12,everyRow).getContents());
                 _4sinfolist.add(m_4sInfo);
                 m_4sCity.set_4sinfolist(_4sinfolist);
+                _4scitylist.add(m_4sCity);
                 m_province.set_4scitylist(_4scitylist);
                 newProvince = m_province;
             }else{//存在该省,存在该市
-
+                _4sProvince m_province = map_4sProvinces.get(pName);
+                List<_4sCity> e_citylist = map_4sProvinces.get(pName).get_4scitylist();
+                _4sCity m_4sCity = new _4sCity();
+                List<_4sInfo> m_4sinfolist = new ArrayList<>();
+                for (int i = 0;i<e_citylist.size();i++){
+                    if (e_citylist.get(i).getCityname().contains(cName)){
+                        m_4sinfolist = e_citylist.get(i).get_4sinfolist();
+                        e_citylist.remove(i);
+                    }
+                }
+                _4sInfo m_info = new _4sInfo();
+                m_info.set_4sname(sheet.getCell(3,everyRow).getContents());
+                m_info.set_4saddress(sheet.getCell(4,everyRow).getContents());
+                m_info.set_4slongitude(sheet.getCell(12,everyRow).getContents());
+                m_info.set_4slatitude(sheet.getCell(13,everyRow).getContents());
+                m_4sinfolist.add(m_info);
+                m_4sCity.setCityname(cName);
+                m_4sCity.set_4sinfolist(m_4sinfolist);
+                e_citylist.add(m_4sCity);
+                m_province.set_4scitylist(e_citylist);
+                newProvince = m_province;
             }
             //将数据添加到集合
             //TODO add provinces
             map_4sProvinces.put(pName,newProvince);
         }
-
+Log.i("province---",map_4sProvinces.size()+"");
+        Set set = map_4sProvinces.entrySet();
+        Iterator i =set.iterator();
+        while (i.hasNext()){
+            Map.Entry entry = (Map.Entry) i.next();
+            List<_4sCity> yjslist = map_4sProvinces.get(entry.getKey()).get_4scitylist();
+            Log.i("provinces---",yjslist+"");
+        }
+       /* for (int j = 0;j<map_4sProvinces.size();j++){
+            Log.i("provinces---",map_4sProvinces.);
+          //  List<_4sCity> yjslist = map_4sProvinces.get(j).get_4scitylist();
+           // Log.i("provinces---",yjslist+"");
+        }*/
+        Log.i("province----",map_4sProvinces+"");
     }
 
 
