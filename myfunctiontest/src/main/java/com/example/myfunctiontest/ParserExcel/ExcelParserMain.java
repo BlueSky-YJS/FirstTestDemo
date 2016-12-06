@@ -172,8 +172,15 @@ Log.i("province---",map_4sProvinces.size()+"");
         Log.i("province----",map_4sProvinces+"");
     }
 
-
     //新解析4sinfo.xls  excel表  结束
+
+    //通过excel解析的4s店数据创建数据库存储  开始
+
+    public void create_4s_sql(Map<String,_4sProvince> map_4sProvinces){
+
+    }
+    //通过excel解析的4s店数据创建数据库存储  结束
+
 
 
 }
