@@ -1,6 +1,8 @@
 package com.example.myfunctiontest.ParserExcel;
 
+import android.content.ContentValues;
 import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -8,10 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.myfunctiontest.MySqlUtils.ConnectionUtil;
+import com.example.myfunctiontest.MySqlUtils.MySqliteOpenHelper;
 import com.example.myfunctiontest.R;
 
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -61,7 +68,8 @@ public class ExcelParserMain extends AppCompatActivity {
                 public void run() {
                     try {
                         //readExcel(filename);
-                        readnewExcel(filename);
+                       // readnewExcel(filename);
+                        createsqlite(filename);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -172,15 +180,63 @@ Log.i("province---",map_4sProvinces.size()+"");
         Log.i("province----",map_4sProvinces+"");
     }
 
+
     //新解析4sinfo.xls  excel表  结束
+    public void createDB(String FileName)throws Exception{
+    InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(FileName);
+    Workbook workbook = null;
+    workbook = Workbook.getWorkbook(inputStream);
+    //得到第一张表
+    Sheet sheet = workbook.getSheet(0);
+    //列数
+    int columnCount = sheet.getColumns();
+    //行数
+    int rowCount = sheet.getRows();
+    String sql = "insert into provinces(pname) values(?)";
+    Connection connection = null;
+    PreparedStatement pStatement = null;
+    try {
+        connection = ConnectionUtil.getConnection();
+        pStatement = connection.prepareStatement(sql);
+        pStatement.setString(1, "");
+        int count = pStatement.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        ConnectionUtil.closePreparedStatement(pStatement);
+        ConnectionUtil.closeConnection(connection);
+    }
 
-    //通过excel解析的4s店数据创建数据库存储  开始
 
-    public void create_4s_sql(Map<String,_4sProvince> map_4sProvinces){
 
     }
-    //通过excel解析的4s店数据创建数据库存储  结束
+    private MySqliteOpenHelper dbHelper;
+    private SQLiteDatabase db;
+    public void createsqlite(String FileName)throws Exception{
+        dbHelper = new MySqliteOpenHelper(this, "info_4s.db", null, 1);
+        db = dbHelper.getWritableDatabase();
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(FileName);
+        Workbook workbook = null;
+        workbook = Workbook.getWorkbook(inputStream);
+        //得到第一张表
+        Sheet sheet = workbook.getSheet(0);
+        //列数
+        int columnCount = sheet.getColumns();
+        //行数
+        int rowCount = sheet.getRows();
+        for (int everyRow = 0;everyRow < rowCount;everyRow++){
+            ContentValues values = new ContentValues();
+            values.put("pname",sheet.getCell(0,everyRow).getContents());
+            values.put("cname",sheet.getCell(1,everyRow).getContents());
+            values.put("_4sname",sheet.getCell(3,everyRow).getContents());
+            values.put("_4saddress",sheet.getCell(4,everyRow).getContents());
+            values.put("longitude",sheet.getCell(12,everyRow).getContents());
+            values.put("latitude",sheet.getCell(13,everyRow).getContents());
+            db.insert("info_4s",null,values);
+
+        }
 
 
+    }
 
 }
