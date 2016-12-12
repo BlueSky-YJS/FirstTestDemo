@@ -68,11 +68,40 @@
         android:layout_marginStart="57dp" />
 
     <Button
+        android:text="点击跳转到FileTestMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/mutlidown"
+        android:layout_marginBottom="14dp"
+        android:id="@+id/button4" />
+
+    <Button
+        android:text="点击跳转手势测试"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="18dp"
+        android:id="@+id/button5" />
+
+    <Button
         android:text="点击多线程下载"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/mutlidown"
         android:layout_below="@+id/parseExcel"
-        android:layout_alignStart="@+id/testService"
-        android:layout_marginTop="38dp"
-        android:id="@+id/mutlidown" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="19dp" />
+
+    <Button
+        android:text="点击跳转autotextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button6"
+        android:layout_alignBottom="@+id/mutlidown"
+        android:layout_alignEnd="@+id/button5"
+        android:layout_alignTop="@+id/mutlidown" />
 </RelativeLayout>

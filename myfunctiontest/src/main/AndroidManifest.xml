@@ -19,6 +19,9 @@
         <activity android:name=".ParserExcel.ExcelParserMain"/>
         <activity android:name=".CommunicationTest.ClientActivity"/>
         <activity android:name=".MultithreadDownload.MultithreadDownMain"/>
+        <activity android:name=".FileTest.FileTestMain"/>
+        <activity android:name=".GestureTest.GestureTestMain"/>
+        <activity android:name=".AutoFitTextview.AutoFitTextviewMian"/>
         <service android:name=".UpdateProgressTest.UpdateService"/>
         <service android:name=".CommunicationTest.ServiceServer">
             <intent-filter>

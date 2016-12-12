@@ -19,7 +19,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.myfunctiontest.AutoFitTextview.AutoFitTextviewMian;
 import com.example.myfunctiontest.CommunicationTest.ClientActivity;
+import com.example.myfunctiontest.FileTest.FileTestMain;
+import com.example.myfunctiontest.GestureTest.GestureTestMain;
 import com.example.myfunctiontest.MultithreadDownload.MultithreadDownMain;
 import com.example.myfunctiontest.ParserExcel.ExcelParserMain;
 import com.example.myfunctiontest.UpdateProgressTest.ProgressInterface;
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
     private Button testServer;
     private  Button parseExcel;
     private Button mutiDown;
+    private Button filetestbtn;
+    private Button gestureBtn;
+    private Button autofittextviewBtn;
     public static final String APK_DOWNLOAD_URL = "http://101.200.195.22:8080/appupdate/weichai.apk";
     private UpdateService myservice;
     ServiceConnection conn = new ServiceConnection() {
@@ -106,6 +112,32 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        filetestbtn = (Button) findViewById(R.id.button4);
+        filetestbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent fileIntent = new Intent(MainActivity.this, FileTestMain.class);
+                startActivity(fileIntent);
+            }
+        });
+
+        gestureBtn = (Button) findViewById(R.id.button5);
+        gestureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gesIntent = new Intent(MainActivity.this, GestureTestMain.class);
+                startActivity(gesIntent);
+            }
+        });
+        autofittextviewBtn = (Button) findViewById(R.id.button6);
+        autofittextviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent autoIntent = new Intent(MainActivity.this, AutoFitTextviewMian.class);
+                startActivity(autoIntent);
             }
         });
     }
