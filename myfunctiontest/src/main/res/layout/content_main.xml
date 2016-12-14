@@ -104,4 +104,37 @@
         android:layout_alignBottom="@+id/mutlidown"
         android:layout_alignEnd="@+id/button5"
         android:layout_alignTop="@+id/mutlidown" />
+
+    <Button
+        android:text="点击跳转callbackdemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_alignEnd="@+id/mutlidown"
+        android:id="@+id/button7" />
+
+    <Button
+        android:text="点击跳转image测试"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button7"
+        android:layout_alignEnd="@+id/testService"
+        android:id="@+id/button8" />
+
+    <Button
+        android:text="点击跳转loginActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/display_result"
+        android:layout_alignStart="@+id/button6"
+        android:layout_marginStart="12dp"
+        android:id="@+id/button9" />
+
+    <Button
+        android:text="指南针测试"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button6"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/button10" />
 </RelativeLayout>

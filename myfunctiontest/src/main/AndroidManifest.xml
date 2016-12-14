@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application android:allowBackup="true" android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/AppTheme">
         <activity
@@ -22,6 +23,10 @@
         <activity android:name=".FileTest.FileTestMain"/>
         <activity android:name=".GestureTest.GestureTestMain"/>
         <activity android:name=".AutoFitTextview.AutoFitTextviewMian"/>
+        <activity android:name=".CallbackDemo.CallbackDemoMian"/>
+        <activity android:name=".CallbackDemo.GetImageMain"/>
+        <activity android:name=".LoginCallbackDemo.LoginActivity"/>
+        <activity android:name=".Compass.Compasstest"/>
         <service android:name=".UpdateProgressTest.UpdateService"/>
         <service android:name=".CommunicationTest.ServiceServer">
             <intent-filter>

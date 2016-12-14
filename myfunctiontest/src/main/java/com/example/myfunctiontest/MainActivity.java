@@ -20,9 +20,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.myfunctiontest.AutoFitTextview.AutoFitTextviewMian;
+import com.example.myfunctiontest.CallbackDemo.CallbackDemoMian;
+import com.example.myfunctiontest.CallbackDemo.GetImageMain;
 import com.example.myfunctiontest.CommunicationTest.ClientActivity;
+import com.example.myfunctiontest.Compass.Compasstest;
 import com.example.myfunctiontest.FileTest.FileTestMain;
 import com.example.myfunctiontest.GestureTest.GestureTestMain;
+import com.example.myfunctiontest.LoginCallbackDemo.LoginActivity;
 import com.example.myfunctiontest.MultithreadDownload.MultithreadDownMain;
 import com.example.myfunctiontest.ParserExcel.ExcelParserMain;
 import com.example.myfunctiontest.UpdateProgressTest.ProgressInterface;
@@ -138,6 +142,38 @@ public class MainActivity extends AppCompatActivity implements NetWorkCallbackIn
             public void onClick(View v) {
                 Intent autoIntent = new Intent(MainActivity.this, AutoFitTextviewMian.class);
                 startActivity(autoIntent);
+            }
+        });
+        Button btn7 = (Button) findViewById(R.id.button7);
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent7 = new Intent(MainActivity.this, CallbackDemoMian.class);
+                startActivity(intent7);
+            }
+        });
+        Button btn8 = (Button) findViewById(R.id.button8);
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent8 = new Intent(MainActivity.this, GetImageMain.class);
+                startActivity(intent8);
+            }
+        });
+        Button btn9 = (Button) findViewById(R.id.button9);
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent9 = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent9);
+            }
+        });
+        Button btn10 = (Button) findViewById(R.id.button10);
+        btn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intetn10 = new Intent(MainActivity.this, Compasstest.class);
+                startActivity(intetn10);
             }
         });
     }
